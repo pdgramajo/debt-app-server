@@ -1,11 +1,10 @@
 import { matchedData } from "express-validator";
-
 import User from "../models/User.model.js";
-import UsersMock from "../mocks/Users.mock.js";
+import userServices from "../services/user.services.js";
 
 const getAllUser = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await userServices.getAllUsers();
     res.json(users);
   } catch (error) {
     console.log(error);

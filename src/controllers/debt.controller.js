@@ -1,11 +1,10 @@
-import User from "../models/User.model.js";
+import Debt from "../models/Debt.model.js";
 import DebtsMock from "../mocks/Debts.mock.js";
 
 const getAllDebts = async (req, res) => {
   try {
-    // const users = await User.find();
-    const users = DebtsMock;
-    res.json(users);
+    const debts = await Debt.find();
+    res.json(debts);
   } catch (error) {
     console.log(error);
   }
@@ -14,8 +13,7 @@ const getAllDebts = async (req, res) => {
 const getDebtsByUserId = async (req, res) => {
   console.log("getUser | req.params.userId", req.params.id);
   try {
-    // const user = await User.findById(req.params.id);
-    const userDebts = await DebtsMock.filter(
+    const userDebts = await Debt.filter(
       (d) => d.userId === parseInt(req.params.id)
     );
     res.json(userDebts);
