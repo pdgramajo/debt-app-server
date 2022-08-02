@@ -1,4 +1,5 @@
 import { matchedData } from "express-validator";
+import Role from "../config/roles.js";
 import User from "../models/User.model.js";
 import userServices from "../services/user.services.js";
 
@@ -15,7 +16,7 @@ const getUser = async (req, res) => {
   req = matchedData(req);
   const id = req.id;
   try {
-    const user = await User.findById(id);
+    const user = await userServices.getUserById(id);
     res.json(user);
   } catch (error) {
     console.log(error);
@@ -27,7 +28,7 @@ const createUser = async (req, res) => {
   console.log('createUser | userData', userData);
 
   try {
-    const newUser = await User.create(userData);
+    const newUser = await userServices.createUser(userData)
     res.json(newUser);
   } catch (error) {
     console.log(error);

@@ -2,11 +2,15 @@ import { validationResult } from "express-validator";
 
 const validateResult = (req, res, next) => {
   try {
-    validationResult(req).throw();
+    console.log('entroooooooo');
+    const data = validationResult(req).throw()
+    console.log('pasooooo',data);
     return next();
+    res.status();
+    res.send({ errors: data });
   } catch (err) {
     res.status(403);
-    res.send({ errors: err.array() });
+    res.send({ errors: err });
   }
 };
 
