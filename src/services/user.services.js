@@ -10,16 +10,17 @@ const getUserById = async (id) => {
 };
 
 const createUser = async (userData) => {
-  const newUser = User.create(userData);
-  return newUser;
-}
-
-
+  const emailExists = await User.findOne({ email: userData.email });
+  console.log("createUser | emailExists \n", emailExists);
+  return emailExists; 
+  // const newUser = User.create(userData);
+  // return newUser;
+};
 
 const UserServices = {
   getAllUsers,
   getUserById,
-  createUser
+  createUser,
 };
 
-export default UserServices;
+export default UserServices;  

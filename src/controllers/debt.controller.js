@@ -1,9 +1,10 @@
 import Debt from "../models/Debt.model.js";
 import DebtsMock from "../mocks/Debts.mock.js";
+import debtServices from "../services/debt.services.js";
 
 const getAllDebts = async (req, res) => {
   try {
-    const debts = await Debt.find();
+    const debts = await debtServices.getAllDebts()
     res.json(debts);
   } catch (error) {
     console.log(error);
@@ -28,7 +29,7 @@ const createDebt = async (req, res) => {
   try {
     // const foundUser = await User.findOne({
     //   email: email,
-    //   isBloqued: false,
+    //   isBlocked: false,
     //   isEnabled: true,
     // });
 
