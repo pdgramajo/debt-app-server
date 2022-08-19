@@ -16,7 +16,6 @@ const loadRouter = async (file) => {
   const name = removeExtension(file);
   if (name !== "index") {
     const routerModule = await import(`./${file}`);
-    console.log(`Cargando ruta ${name}`);
     router.use(`/${name}`, routerModule.router);
   }
 };

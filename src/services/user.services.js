@@ -1,4 +1,5 @@
 import User from "../models/User.model.js";
+import { isObjectEmpty } from "../utils/common.js";
 
 const getAllUsers = async () => {
   const users = await User.find();
@@ -10,11 +11,13 @@ const getUserById = async (id) => {
 };
 
 const createUser = async (userData) => {
-  const emailExists = await User.findOne({ email: userData.email });
-  console.log("createUser | emailExists \n", emailExists);
-  return emailExists; 
-  // const newUser = User.create(userData);
-  // return newUser;
+  // const emailExists = await User.findOne({ email: "test@test.com" });
+  // if (!isObjectEmpty(emailExists)) {
+  //   throw new Error("email taken");
+  // }
+
+  const newUser = User.create(userData);
+  return newUser;
 };
 
 const UserServices = {
@@ -23,4 +26,4 @@ const UserServices = {
   createUser,
 };
 
-export default UserServices;  
+export default UserServices;
