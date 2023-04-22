@@ -8,7 +8,7 @@ import routes from './routes/index.routes.js'
 const app = express();
 
 // configuration
-app.set("port", process.env.PORT || 9001);
+app.set("port", process.env.PORT || 3001);
 
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.send("welcome to my api rest");
+  res.send("welcome to my api rest dockerized 222");
 });
 
 // loading all routes

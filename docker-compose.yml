@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  api:
+    container_name: node_api
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - database
+    volumes:
+      - api-data:/home/app
+  database:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  api-data:
+  mongo-data:
