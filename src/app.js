@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.send("welcome to my api rest dockerized 222");
+  res.send("welcome to my api rest dockerized 22 edited from development");
 });
 
 // loading all routes

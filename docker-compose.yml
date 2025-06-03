@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   api:
     container_name: node_api
@@ -11,8 +9,12 @@ services:
       - "3001:3001"
     depends_on:
       - database
+    # volumes:
+    #   - api-data:/home/app
     volumes:
-      - api-data:/home/app
+      - ./src:/home/app/src
+      - ./package.json:/home/app/package.json
+      - ./package-lock.json:/home/app/package-lock.json
   database:
     container_name: mongodb
     image: mongo
@@ -28,6 +30,8 @@ services:
       - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
     volumes:
       - mongo-data:/data/db
+      - mongo-data-config:/data/configdb
 volumes:
-  api-data:
+  #api-data:
   mongo-data:
+  mongo-data-config:
