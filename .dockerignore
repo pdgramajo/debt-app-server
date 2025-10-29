@@ -1,1 +1,16 @@
+# Dependencias locales
 node_modules
+
+# Configuración de entorno
+.env
+.env.*
+
+# Archivos de construcción y orquestación
+Dockerfile
+Dockerfile.*
+docker-compose.yml
+.dockerignore
+
+# Repositorios / control de versiones
+.git
+.gitignore
