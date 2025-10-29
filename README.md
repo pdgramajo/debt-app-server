@@ -10,7 +10,7 @@ Servidor API REST construido con **Node.js** y **Express** para gestionar deudas
 - 🔐 Autenticación con JWT (`jsonwebtoken`)
 - 🗃️ Base de datos MongoDB
 - ✅ Validación de datos con `express-validator`
-- 🔒 Encriptación de contraseñas con `bcrypt`
+<!-- - 🔒 Encriptación de contraseñas con `bcryptjs` -->
 - 🌍 CORS habilitado
 - ♻️ Hot-reload en desarrollo con `nodemon`
 
