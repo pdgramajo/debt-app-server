@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = () => {
   try {
-    const MONGODB_URI = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@database:27017/${process.env.MONGO_BD}?authSource=admin`
+    const MONGODB_URI = `mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@database:27017/${process.env.MONGO_INITDB_DATABASE}?authSource=admin`
     mongoose.connect(MONGODB_URI, {
       useUnifiedTopology: true,
       useNewUrlParser: true,

@@ -11,28 +11,36 @@ services:
       - .env
     depends_on:
       - database
-    # volumes:
-    #   - api-data:/home/app
     volumes:
       - ./src:/home/app/src
       - ./package.json:/home/app/package.json
       - ./package-lock.json:/home/app/package-lock.json
   database:
     container_name: mongodb
-    image: mongo:latest
+    image: mongo:6.0.5
     restart: always
     ports:
       - "27017:27017"
     env_file:
       - .env
-    environment:
-      # - MONGODB_URI=${MONGODB_URI}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
     volumes:
       - mongo-data:/data/db
       - mongo-data-config:/data/configdb
+  mongo-express:
+    image: mongo-express:1.0.0-alpha
+    container_name: mongo-express-admin
+    restart: always
+    depends_on:
+      - database
+    environment:
+      ME_CONFIG_MONGODB_SERVER: database
+      ME_CONFIG_MONGODB_PORT: ${MONGODB_PORT}
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_MONGODB_AUTH_DATABASE: ${MONGODB_AUTH_DATABASE}
+      ME_CONFIG_MONGODB_DEFAULT_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+      - 8081:8081
 volumes:
-  #api-data:
   mongo-data:
   mongo-data-config:
