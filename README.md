@@ -32,9 +32,12 @@ Servidor API REST construido con **Node.js** y **Express** para gestionar deudas
    ```
 
 2. Configura las variables de entorno en el archivo `.env` con tus valores:
-   - `MONGODB_URI`
-   - `MONGO_USER`
-   - `MONGO_PASSWORD`
+   - `MONGO_INITDB_ROOT_USERNAME`
+   - `MONGO_INITDB_ROOT_PASSWORD`
+   - `MONGO_INITDB_DATABASE`
+   - `PORT`
+   - `MONGODB_PORT`
+   - `MONGODB_AUTH_DATABASE`
    - `ACCESS_TOKEN_SECRET`
    - `REFRESH_TOKEN_SECRET`
 
