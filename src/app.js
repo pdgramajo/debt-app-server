@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import swaggerUi from 'swagger-ui-express';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const swaggerFile = require('../swagger-output.json');
 import corsOptions from "./config/corsOptions.js";
 import credentials from "./middlewares/credentials.js";
 import routes from './routes/index.routes.js'
@@ -30,5 +34,8 @@ app.get("/", (req, res) => {
 
 // loading all routes
 app.use('/api', routes)
+
+// Swagger UI
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 export default app;
